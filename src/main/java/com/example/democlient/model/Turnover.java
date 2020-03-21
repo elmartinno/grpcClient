@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "turnovers")
+//@Document(collection = "turnovers")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

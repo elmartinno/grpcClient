@@ -29,6 +29,7 @@ public class TestClientController {
             .usePlaintext()
             .build();
 
+    //http://grpc-client-rest11.192.168.42.59.nip.io/client/findAccountByIban/?iban=123456789
     //http://localhost:8090/client/getData?iban=SK5509000000005165056080
     @GetMapping("/getData")
     private AccountData getData(String iban) {
@@ -109,6 +110,7 @@ public class TestClientController {
         AccountGrpc a = accounts1.getAccounts(0);
         return mapBackAccount(a);
     }
+    //http://grpc-client-rest11.192.168.42.59.nip.io/client/findTurnoversByIban/?iban=123456789
     //http://localhost:8090/client/findTurnoversByIban/?iban=SK8609000000005155063746
     @GetMapping("/findTurnoversByIban")
     private List<Turnover> findTurnoverByIban(String iban) {
