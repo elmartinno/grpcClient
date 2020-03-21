@@ -24,7 +24,8 @@ import java.util.List;
 public class TestClientController {
     @Autowired
     private Logs l;
-    ManagedChannel channel = ManagedChannelBuilder.forAddress("https://grpc-server-rest11.192.168.42.59.nip.io/", 8070)
+
+    ManagedChannel channel = ManagedChannelBuilder.forAddress("http://grpc-server-rest11.192.168.42.59.nip.io", 5001)
             .usePlaintext()
             .build();
 
