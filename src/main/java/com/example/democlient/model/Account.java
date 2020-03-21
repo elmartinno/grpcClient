@@ -3,17 +3,17 @@ package com.example.democlient.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+//import org.bson.types.ObjectId;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.mongodb.core.mapping.Document;
 
 //@Document(collection = "accounts")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Account {
-    @Id
-    private ObjectId _id;
+    //@Id
+    private String _id;
     private String created;
     private String update;
     private String iban;
@@ -21,11 +21,11 @@ public class Account {
     private String published;
     private String hidden;
 
-    public ObjectId get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(ObjectId _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
