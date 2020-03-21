@@ -8,12 +8,16 @@ import com.example.democlient.model.Turnover;
 import com.grpc.getAccountsClasses.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.netty.GrpcSslContexts;
+import io.grpc.netty.NettyChannelBuilder;
+import io.grpc.testing.TlsTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.net.ssl.SSLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,9 +29,17 @@ public class TestClientController {
     @Autowired
     private Logs l;
 
-    ManagedChannel channel = ManagedChannelBuilder.forAddress("grpc-server-rest11.192.168.42.59.nip.io", 443)
+
+    ManagedChannel channel = NettyChannelBuilder.forAddress("grpc-server-rest11.192.168.42.59.nip.io", 443)
             //.usePlaintext()
+            .sslContext(
+                    GrpcSslContexts.forClient()
+                            .trustManager(TlsTesting.loadCert("ca.pem"))
+                            .build())
             .build();
+
+    public TestClientController() throws SSLException {
+    }
 
     //http://grpc-client-rest11.192.168.42.59.nip.io/client/findAccountByIban/?iban=123456789
     //http://localhost:8090/client/getData?iban=SK5509000000005165056080
