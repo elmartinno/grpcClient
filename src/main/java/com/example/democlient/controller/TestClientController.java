@@ -38,7 +38,7 @@ public class TestClientController {
                     GrpcSslContexts.forClient()
                             .trustManager(TlsTesting.loadCert("ca.pem"))
                             .build())
-            //.overrideAuthority("")
+            .overrideAuthority("grpc-server-rest11.192.168.42.59.nip.io")
             .build();
 
     public TestClientController() throws SSLException {
