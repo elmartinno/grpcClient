@@ -26,7 +26,7 @@ public class TestClientController {
     private Logs l;
 
     ManagedChannel channel = ManagedChannelBuilder.forAddress("grpc-server-rest11.192.168.42.59.nip.io", 443)
-            .usePlaintext()
+            //.usePlaintext()
             .build();
 
     //http://grpc-client-rest11.192.168.42.59.nip.io/client/findAccountByIban/?iban=123456789
