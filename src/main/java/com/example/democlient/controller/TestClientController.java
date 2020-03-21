@@ -8,8 +8,10 @@ import com.example.democlient.model.Turnover;
 import com.grpc.getAccountsClasses.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.netty.GrpcSslContexts;
-import io.grpc.netty.NettyChannelBuilder;
+//import io.grpc.netty.GrpcSslContexts;
+//import io.grpc.netty.NettyChannelBuilder;
+import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
+import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 import io.grpc.testing.TlsTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +38,7 @@ public class TestClientController {
                     GrpcSslContexts.forClient()
                             .trustManager(TlsTesting.loadCert("ca.pem"))
                             .build())
+            .overrideAuthority("")
             .build();
 
     public TestClientController() throws SSLException {
