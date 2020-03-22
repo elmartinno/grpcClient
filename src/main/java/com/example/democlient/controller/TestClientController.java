@@ -5,12 +5,17 @@ import com.example.democlient.model.Account;
 import com.example.democlient.model.Amount;
 import com.example.democlient.model.Balance;
 import com.example.democlient.model.Turnover;
+
 import com.grpc.getAccountsClasses.*;
 import io.grpc.ManagedChannel;
-import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
-import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
-import io.grpc.netty.shaded.io.netty.handler.ssl.SslProvider;
+//import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
+//import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
+//import io.grpc.netty.shaded.io.netty.handler.ssl.SslProvider;
+import io.grpc.netty.GrpcSslContexts;
+import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.testing.TlsTesting;
+
+import io.netty.handler.ssl.SslProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -98,7 +103,7 @@ public class TestClientController {
 
         l.createLog("removeAccount","");
     }
-    //http://grpc-client-rest11.192.168.42.59.nip.io/client/addAccount/?iban=1111
+    //https://grpc-client-rest11.192.168.42.59.nip.io/client/addAccount/?iban=1111
     @GetMapping("/addAccount")
     private void addAccount(String iban) {
         AccountGrpc account = AccountGrpc.newBuilder().setIban(iban)
