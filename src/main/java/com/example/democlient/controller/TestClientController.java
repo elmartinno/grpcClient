@@ -7,9 +7,6 @@ import com.example.democlient.model.Balance;
 import com.example.democlient.model.Turnover;
 import com.grpc.getAccountsClasses.*;
 import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-//import io.grpc.netty.GrpcSslContexts;
-//import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 import io.grpc.testing.TlsTesting;
@@ -17,12 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import javax.net.ssl.SSLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -32,7 +27,7 @@ public class TestClientController {
     private Logs l;
 
 
-    ManagedChannel channel = NettyChannelBuilder.forAddress("grpc-server-rest11.192.168.42.59.nip.io", 443)
+    ManagedChannel channel = NettyChannelBuilder.forAddress("grpc-server-rest11.192.168.42.59.nip.io", 80)
 //            .usePlaintext()
             .sslContext(
                     GrpcSslContexts.forClient()
@@ -101,7 +96,7 @@ public class TestClientController {
 
         l.createLog("removeAccount","");
     }
-    //http://localhost:8090/client/addAccount
+    //http://grpc-client-rest11.192.168.42.59.nip.io/client/addAccount/?iban=1111
     @GetMapping("/addAccount")
     private void addAccount(String iban) {
         AccountGrpc account = AccountGrpc.newBuilder().setIban(iban)
