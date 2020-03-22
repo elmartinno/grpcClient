@@ -9,6 +9,7 @@ import com.grpc.getAccountsClasses.*;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
+import io.grpc.netty.shaded.io.netty.handler.ssl.SslProvider;
 import io.grpc.testing.TlsTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +28,12 @@ public class TestClientController {
     private Logs l;
 
 
-    ManagedChannel channel = NettyChannelBuilder.forAddress("grpc-server-rest11.192.168.42.59.nip.io", 80)
+    ManagedChannel channel = NettyChannelBuilder.forAddress("grpc-server-rest11.192.168.42.59.nip.io", 443)
 //            .usePlaintext()
             .sslContext(
                     GrpcSslContexts.forClient()
                             .trustManager(TlsTesting.loadCert("ca.pem"))
+                            .sslProvider(SslProvider.OPENSSL)
                             .build())
             .overrideAuthority("foo.test.google.fr")
             .build();
