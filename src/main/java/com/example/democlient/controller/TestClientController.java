@@ -34,7 +34,7 @@ public class TestClientController {
 
 
     ManagedChannel channel = NettyChannelBuilder.forAddress("grpc-server-grpc.192.168.42.223.nip.io", 443)
-            .usePlaintext()
+//            .usePlaintext()
             .sslContext(
                     GrpcSslContexts.forClient()
                             .trustManager(TlsTesting.loadCert("ca.pem"))
