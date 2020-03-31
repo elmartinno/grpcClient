@@ -33,7 +33,7 @@ public class TestClientController {
     private Logs l;
 
 
-    ManagedChannel channel = NettyChannelBuilder.forAddress("grpcserver-grpc.192.168.42.171.nip.io", 80)
+    ManagedChannel channel = NettyChannelBuilder.forAddress("grpcserver-grpc.192.168.42.171.nip.io", 443)
             .usePlaintext()
 //            .sslContext(
 //                    GrpcSslContexts.forClient()
