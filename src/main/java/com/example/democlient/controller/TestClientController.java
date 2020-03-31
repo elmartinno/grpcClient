@@ -35,12 +35,12 @@ public class TestClientController {
 
     ManagedChannel channel = NettyChannelBuilder.forAddress("grpcserver-grpc.192.168.42.171.nip.io", 443)
             .usePlaintext()
-//            .sslContext(
-//                    GrpcSslContexts.forClient()
-//                            .trustManager(TlsTesting.loadCert("ca.pem"))
-//                            .sslProvider(SslProvider.OPENSSL)
-//                            .build())
-//            .overrideAuthority("foo.test.google.fr")
+            .sslContext(
+                    GrpcSslContexts.forClient()
+                            .trustManager(TlsTesting.loadCert("ca.pem"))
+                            .sslProvider(SslProvider.OPENSSL)
+                            .build())
+            .overrideAuthority("foo.test.google.fr")
             .build();
 
     public TestClientController() throws SSLException {
