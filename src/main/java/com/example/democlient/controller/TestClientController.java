@@ -33,7 +33,7 @@ public class TestClientController {
     private Logs l;
 
 
-    ManagedChannel channel = NettyChannelBuilder.forAddress("grpcs-grpc2.192.168.42.54.nip.io", 31111)
+    ManagedChannel channel = NettyChannelBuilder.forAddress("grpcs.grpc2.svc.cluster.local", 31111)
             .usePlaintext()
             .sslContext(
                     GrpcSslContexts.forClient()
@@ -46,7 +46,7 @@ public class TestClientController {
     public TestClientController() throws SSLException {
     }
 
-    //http://grpc-client-grpc.192.168.42.223.nip.io/client/findAccountByIban/?iban=123456789
+    //http://grpcc-grpc2.192.168.42.54.nip.io/client/findAccountByIban/?iban=123456789
     //http://localhost:8090/client/getData?iban=SK5509000000005165056080
     @GetMapping("/getData")
     private AccountData getData(String iban) {
